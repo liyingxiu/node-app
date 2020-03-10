@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import jwt_decode from "jwt-decode";
 export default {
   name: "login",
   components: {},
@@ -71,22 +72,38 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           console.log("成功注册");
-          this.$axios
-            .post("/api/users/login", this.loginUser)
-            .then(res => {
-                console.log(res);//打印的res中的data中含有token值
-              //拿到token
-              const {token} = res.data;
-              //存储到localStorage
-              localStorage.setItem('eleToken',token);
-              this.$router.push("/index");
-            });
+          this.$axios.post("/api/users/login", this.loginUser).then(res => {
+            console.log(res); //打印的res中的data中含有token值
+            //拿到token
+            const { token } = res.data;
+
+            //存储到localStorage
+            localStorage.setItem("eleToken", token);
+
+            //解析token
+            const decoded = jwt_decode(token);
+            // console.log(decoded);
+
+            //token存储到vuex中
+            this.$store.dispatch("setAuthenticated",!this.isEmpty(decoded));
+            this.$store.dispatch("setUser",decoded);
+
+            this.$router.push("/index");
+          });
         }
       });
+    },
+    isEmpty(value) {
+      return (
+        value === undefined ||
+        value === null ||
+        (typeof value === "object" && Object.keys(value).length === 0) ||
+        (typeof value === "string" && value.trim().length === 0)
+      );
     }
   }
 };
-</script>>
+</script>
 
 <style scoped>
 .login {
