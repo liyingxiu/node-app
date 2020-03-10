@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Loading,Message } from 'element-ui';
+import { Loading, Message } from 'element-ui';
 
 let loading;
 function startLoading() {
@@ -8,7 +8,7 @@ function startLoading() {
         text: "拼命加载ing",
         background: 'rgba(0, 0, 0, 0.7)'
     });
-    
+
 }
 
 function endLoading() {
@@ -25,12 +25,12 @@ axios.interceptors.request.use(config => {
     return Promise.reject(err)
 })
 //响应拦截
-axios.interceptors.response.use(response =>{
+axios.interceptors.response.use(response => {
     console.log('结束加载动画');
     //结束加载动画
     endLoading();
     return response;
-},err=>{
+}, err => {
     //错误提醒
     endLoading();
     Message.error(err.response.data);

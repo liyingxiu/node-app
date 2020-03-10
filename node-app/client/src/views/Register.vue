@@ -122,10 +122,10 @@ export default {
           .then(res=>{
             console.log('success')
             //注册成功
-            // this.$message({
-            //   message:"账号注册成功",
-            //   type:"success"
-            // });
+            this.$message({
+              message:"账号注册成功",
+              type:"success"
+            });
           })
           this.$router.push("/login")
         } else {
