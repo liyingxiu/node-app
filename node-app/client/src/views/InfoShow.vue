@@ -39,6 +39,7 @@ export default {
   height: 100%;
   box-sizing: border-box;
   /* padding: 16px; */
+  /* margin-left: 100px; */
 }
 .row-bg {
   width: 100%;
