@@ -1,5 +1,5 @@
 # Fund management system
-A node and vue.js-based money management system
+A node and vue.js-based fund management system
 
 ## Install front-end dependencies
 ```
