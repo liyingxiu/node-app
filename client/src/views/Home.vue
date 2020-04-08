@@ -2,7 +2,7 @@
     <div class="home">
         <div class="container">
             <h1 class="title">后台在线</h1>
-            <p class="lead">这一行是用来凑数的</p>
+            <p class="lead">能做的更好</p>
         </div>
     </div>
 </template>
